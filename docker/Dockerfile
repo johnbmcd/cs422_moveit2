@@ -9,4 +9,8 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p /etc/xdg/terminator/
 RUN touch /etc/xdg/terminator/config
 
+COPY ros_entrypoint.sh /ros_entrypoint.sh
+
+WORKDIR /root/cs422_planning
+
 CMD [ "/usr/bin/terminator" ]

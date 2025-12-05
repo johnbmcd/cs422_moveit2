@@ -43,22 +43,16 @@ def plan_and_execute(
 def add_collision_objects(planning_scene_monitor):
     """Helper function that adds collision objects to the planning scene."""
     object_positions = [
-    #    (0.15, 0.1, 0.5),
-    #    (0.25, 0.0, 1.0),
-    #    (-0.25, -0.3, 0.8),
-    #    (0.25, 0.3, 0.75),
-        (0.5, 1.0, 0.25),
-        (0.5, -1.0, 0.25),
-        (0.5, 0.0, 0.6),
+        (0.15, 0.1, 0.5),
+        (0.25, 0.0, 1.0),
+        (-0.25, -0.3, 0.8),
+        (0.25, 0.3, 0.75),
     ]
     object_dimensions = [
-   #     (0.1, 0.4, 0.1),
-   #     (0.1, 0.4, 0.1),
-    #    (0.2, 0.2, 0.2),
-    #    (0.15, 0.15, 0.15),
-        (0.2, 0.2, 0.5),
-        (0.2, 0.2, 0.5),
-        (0.2, 2.2, 0.2),
+        (0.1, 0.4, 0.1),
+        (0.1, 0.4, 0.1),
+        (0.2, 0.2, 0.2),
+        (0.15, 0.15, 0.15),
     ]
 
     with planning_scene_monitor.read_write() as scene:
@@ -82,6 +76,7 @@ def add_collision_objects(planning_scene_monitor):
 
         scene.apply_collision_object(collision_object)
         scene.current_state.update()  # Important to ensure the scene is updated
+
 
 
 def main():
