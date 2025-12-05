@@ -6,7 +6,7 @@
 
 services:
   cpu:
-    image: moveit/moveit2:${DOCKER_IMAGE}
+    image: moveit/moveit2:main-jazzy-tutorial-source
     container_name: moveit2_container
     privileged: true
     network_mode: host
@@ -19,7 +19,7 @@ services:
       DISPLAY: $DISPLAY
   gpu:
     image: moveit/moveit2:${DOCKER_IMAGE}
-    container_name: moveit2_container
+    container_name: moveit2_container_gpu
     privileged: true
     network_mode: host
     command: /bin/bash

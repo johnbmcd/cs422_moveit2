@@ -71,18 +71,25 @@ def main():
     logger.info("MoveItPy instance created")
 
     ###########################################################################
-    # Plan 1 - set states with predefined string
+    # Plan 3 - set goal state with PoseStamped message
     ###########################################################################
 
-    # set plan start state using predefined state
-    panda_arm.set_start_state(configuration_name="ready")
+    # set plan start state to current state
+    panda_arm.set_start_state_to_current_state()
 
-    # set pose goal using predefined state
-    panda_arm.set_goal_state(configuration_name="extended")
+    # set pose goal with PoseStamped message
+    from geometry_msgs.msg import PoseStamped
+
+    pose_goal = PoseStamped()
+    pose_goal.header.frame_id = "panda_link0"
+    pose_goal.pose.orientation.w = 1.0
+    pose_goal.pose.position.x = -0.28
+    pose_goal.pose.position.y = 0.2
+    pose_goal.pose.position.z = 1.0
+    panda_arm.set_goal_state(pose_stamped_msg=pose_goal, pose_link="panda_link8")
 
     # plan to goal
     plan_and_execute(panda, panda_arm, logger, sleep_time=3.0)
-
 
 if __name__ == "__main__":
     main()

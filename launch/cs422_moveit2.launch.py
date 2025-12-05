@@ -32,8 +32,8 @@ def generate_launch_description():
     )
 
     moveit_py_node = Node(
-        name="cs422_planning_node",
-        package="cs422_planning",
+        name="cs422_moveit2_node",
+        package="cs422_moveit2",
         executable=LaunchConfiguration("example_file"),
         output="both",
         parameters=[moveit_config.to_dict()],

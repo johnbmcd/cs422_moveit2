@@ -2,7 +2,7 @@ import os
 from glob import glob
 from setuptools import find_packages, setup
 
-package_name = 'cs422_planning'
+package_name = 'cs422_moveit2'
 
 setup(
     name=package_name,
@@ -28,13 +28,13 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'full_demo = cs422_planning.full_demo:main',
-            'pose_goal_predefined_string_1 = cs422_planning.pose_goal_predefined_string_1:main',
-            'pose_goal_robotstate_object_2 = cs422_planning.pose_goal_robotstate_object_2:main',
-            'pose_goal_posestamped_3 = cs422_planning.pose_goal_posestamped_3:main',
-            'pose_goal_joint_constraints_4 = cs422_planning.pose_goal_joint_constraints_4:main',
-            'multi_pipeline_5 = cs422_planning.multi_pipeline_5:main',
-            'motion_planning_python_api_planning_scene_6 = cs422_planning.motion_planning_python_api_planning_scene_6:main',
+            'full_demo = cs422_moveit2.full_demo:main',
+            'pose_goal_predefined_string_1 = cs422_moveit2.pose_goal_predefined_string_1:main',
+            'pose_goal_robotstate_object_2 = cs422_moveit2.pose_goal_robotstate_object_2:main',
+            'pose_goal_posestamped_3 = cs422_moveit2.pose_goal_posestamped_3:main',
+            'pose_goal_joint_constraints_4 = cs422_moveit2.pose_goal_joint_constraints_4:main',
+            'multi_pipeline_5 = cs422_moveit2.multi_pipeline_5:main',
+            'motion_planning_python_api_planning_scene_6 = cs422_moveit2.motion_planning_python_api_planning_scene_6:main',
         ],
     },
 )
