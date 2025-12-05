@@ -6,11 +6,10 @@
 
 services:
   cpu:
-    image: moveit/moveit2:main-jazzy-tutorial-source
+    image: gitlab.cs.nuim.ie:5050/johnmcd/cs422_moveit2
     container_name: moveit2_container
     privileged: true
     network_mode: host
-    command: /bin/bash
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - $XAUTHORITY:/root/.Xauthority
