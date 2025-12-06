@@ -10,6 +10,7 @@ services:
     container_name: moveit2_container
     privileged: true
     network_mode: host
+    ipc: host
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - $XAUTHORITY:/root/.Xauthority
