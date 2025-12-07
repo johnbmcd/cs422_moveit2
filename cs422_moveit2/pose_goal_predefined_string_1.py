@@ -83,20 +83,5 @@ def main():
     # plan to goal
     plan_and_execute(panda, panda_arm, logger, sleep_time=3.0)
 
-    # --- ADD THIS BLOCK ---
-    logger.info("Going to transport")
-    time.sleep(3.0) 
-    # ----------------------
-
-    # set plan start state using predefined state
-    panda_arm.set_start_state(configuration_name="extended")
-
-    # set pose goal using predefined state
-    panda_arm.set_goal_state(configuration_name="transport")
-
-
-    # plan to goal
-    plan_and_execute(panda, panda_arm, logger, sleep_time=3.0)
-
 if __name__ == "__main__":
     main()
