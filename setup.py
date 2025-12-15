@@ -33,8 +33,7 @@ setup(
             'pose_goal_robotstate_object_2 = cs422_moveit2.pose_goal_robotstate_object_2:main',
             'pose_goal_posestamped_3 = cs422_moveit2.pose_goal_posestamped_3:main',
             'pose_goal_joint_constraints_4 = cs422_moveit2.pose_goal_joint_constraints_4:main',
-            'multi_pipeline_5 = cs422_moveit2.multi_pipeline_5:main',
-            'pose_goal_with_planning_scene_6 = cs422_moveit2.pose_goal_with_planning_scene_6:main',
+            'pose_goal_with_planning_scene_5 = cs422_moveit2.pose_goal_with_planning_scene_5:main',
         ],
     },
 )
