@@ -19,7 +19,7 @@ def generate_launch_description():
         .robot_description(file_path="config/panda.urdf.xacro")
         .trajectory_execution(file_path="config/gripper_moveit_controllers.yaml")
         .moveit_cpp(
-            file_path=get_package_share_directory("moveit2_tutorials")
+            file_path=get_package_share_directory("cs422_moveit2")
             + "/config/motion_planning_python_api_tutorial.yaml"
         )
         .to_moveit_configs()
