@@ -8,10 +8,7 @@ import rclpy
 from rclpy.logging import get_logger
 
 from moveit.planning import MoveItPy
-
-# --- ADD THIS LINE BELOW ---
 from moveit.core.planning_scene import PlanningScene
-# ---------------------------
 
 from geometry_msgs.msg import Pose
 from moveit_msgs.msg import CollisionObject
@@ -59,12 +56,14 @@ def add_collision_objects(planning_scene_monitor):
         collision_object = CollisionObject()
         collision_object.header.frame_id = "panda_link0"
         collision_object.id = "boxes"
+        collision_object.operation = CollisionObject.ADD
 
         for position, dimensions in zip(object_positions, object_dimensions):
             box_pose = Pose()
             box_pose.position.x = position[0]
             box_pose.position.y = position[1]
             box_pose.position.z = position[2]
+            box_pose.orientation.w = 1.0
 
             box = SolidPrimitive()
             box.type = SolidPrimitive.BOX
@@ -72,7 +71,6 @@ def add_collision_objects(planning_scene_monitor):
 
             collision_object.primitives.append(box)
             collision_object.primitive_poses.append(box_pose)
-            collision_object.operation = CollisionObject.ADD
 
         scene.apply_collision_object(collision_object)
         scene.current_state.update()  # Important to ensure the scene is updated
@@ -97,14 +95,11 @@ def main():
     ###################################################################
 
     add_collision_objects(planning_scene_monitor)
+    time.sleep(1.0)
+
     panda_arm.set_start_state(configuration_name="ready")
     panda_arm.set_goal_state(configuration_name="extended")
     plan_and_execute(panda, panda_arm, logger, sleep_time=3.0)
-
-
-    with planning_scene_monitor.read_write() as scene:
-        scene.remove_all_collision_objects()
-        scene.current_state.update()
 
     ###################################################################
     # Check collisions
@@ -135,19 +130,12 @@ def main():
         )
         robot_state.update()  # required to update transforms
 
-    time.sleep(3.0)
+    # Keep the scene visible in RViz before exiting
+    time.sleep(10.0)
 
-    ###################################################################
-    # Remove collision objects and return to the ready pose
-    ###################################################################
-
-#    with planning_scene_monitor.read_write() as scene:
-#        scene.remove_all_collision_objects()
-#        scene.current_state.update()
-#
-#    panda_arm.set_start_state_to_current_state()
- #   panda_arm.set_goal_state(configuration_name="ready")
-#    plan_and_execute(panda, panda_arm, logger, sleep_time=3.0)
+    # Clean shutdown to prevent exit code -11 segfault
+    del panda
+    rclpy.shutdown()
 
 
 if __name__ == "__main__":
